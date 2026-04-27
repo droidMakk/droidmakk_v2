@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+	/* Palette adapted from https://droidmakk.dev */
+	--color-brand-yellow: #fdbd53;
+	--color-brand-grey: #d4d4d4;
+	--color-brand-ink: #3c3d41;
+	--color-brand-white: #ffffff;
+	--color-brand-night: #000000;
+	--color-brand-steel: #414141;
+	--color-brand-blue: #1976d2;
+	--color-brand-navy: #16232d;
+}
+
+:root {
+	--accent-yellow: var(--color-brand-yellow);
+	--ui-bg: #f2f2f2;
+	--ui-surface: #ffffff;
+	--ui-muted: #dddddd;
+	--ui-border: rgba(60, 61, 65, 0.22);
+	--text-primary: #1f2124;
+	--text-secondary: rgba(31, 33, 36, 0.8);
+
+	font-family: 'JetBrains Mono', monospace;
+	color: var(--text-primary);
+	background: var(--ui-bg);
+}
+
+:root[data-theme='dark'] {
+	--ui-bg: #060709;
+	--ui-surface: #121418;
+	--ui-muted: #1e2126;
+	--ui-border: rgba(253, 189, 83, 0.24);
+	--text-primary: #f4f4f4;
+	--text-secondary: rgba(244, 244, 244, 0.8);
+}
+
+body {
+	min-height: 100vh;
+	margin: 0;
+	color: var(--text-primary);
+	font-family: 'JetBrains Mono', monospace;
+	background: linear-gradient(
+		155deg,
+		color-mix(in srgb, var(--ui-bg) 92%, var(--ui-surface) 8%) 0%,
+		var(--ui-bg) 100%
+	);
+	transition:
+		color 220ms ease,
+		background-color 220ms ease;
+}
+
+body::before {
+	content: '';
+	position: fixed;
+	inset: 0;
+	pointer-events: none;
+	z-index: 0;
+	opacity: 0.82;
+	background:
+		repeating-linear-gradient(
+			to right,
+			color-mix(in srgb, var(--accent-yellow) 23%, transparent) 0,
+			color-mix(in srgb, var(--accent-yellow) 23%, transparent) 1px,
+			transparent 1px,
+			transparent 42px
+		),
+		repeating-linear-gradient(
+			to bottom,
+			color-mix(in srgb, var(--accent-yellow) 16%, transparent) 0,
+			color-mix(in srgb, var(--accent-yellow) 16%, transparent) 1px,
+			transparent 1px,
+			transparent 42px
+		),
+		radial-gradient(
+			circle at 16% 14%,
+			color-mix(in srgb, var(--accent-yellow) 28%, transparent),
+			transparent 34%
+		),
+		radial-gradient(
+			circle at 88% 84%,
+			color-mix(in srgb, var(--accent-yellow) 18%, transparent),
+			transparent 42%
+		);
+	mask-image: radial-gradient(circle at center, black 36%, transparent 95%);
+}
+
+* {
+	box-sizing: border-box;
+}
+
+a,
+button {
+	font-family: inherit;
+}

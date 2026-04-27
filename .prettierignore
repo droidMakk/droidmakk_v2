@@ -1,0 +1,8 @@
+node_modules
+.svelte-kit
+build
+.vercel
+.netlify
+.wrangler
+pnpm-lock.yaml
+CHANGELOG.md
