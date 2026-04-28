@@ -1,0 +1,318 @@
+.build-shell {
+	--build-flow-width: 300px;
+	--build-panel-bg: color-mix(in srgb, var(--ui-surface) 86%, transparent);
+	--build-accent-fill: color-mix(in srgb, var(--accent-yellow) 8%, var(--ui-surface));
+	--build-accent-border: color-mix(in srgb, var(--accent-yellow) 55%, transparent);
+	--build-card-outline: 0 0 0 1px color-mix(in srgb, var(--accent-yellow) 35%, transparent);
+	--build-card-shadow: 0 6px 22px color-mix(in srgb, var(--accent-yellow) 18%, transparent);
+	--build-card-inset: inset 0 0 12px color-mix(in srgb, var(--accent-yellow) 6%, transparent);
+	min-height: calc(100vh - 170px);
+	display: grid;
+	place-items: center;
+	padding: 2.5rem 1rem;
+}
+
+.build-shell .build-wrap {
+	width: min(1080px, 70vw);
+}
+
+.build-shell .build-layout {
+	width: 100%;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 300px;
+	grid-template-areas: 'detail flow';
+	gap: 3rem;
+	align-items: start;
+}
+
+.build-shell .detail-col {
+	grid-area: detail;
+	align-self: start;
+}
+
+.build-shell .flow-board {
+	grid-area: flow;
+	align-self: start;
+	display: flex;
+	flex-direction: column;
+	width: var(--build-flow-width);
+	flex-shrink: 0;
+}
+
+.build-shell .flow-item {
+	display: flex;
+	flex-direction: column;
+}
+
+.build-shell .step-card {
+	display: grid;
+	grid-template-columns: 2.6rem 1fr auto;
+	align-items: center;
+	gap: 0.75rem;
+	padding: 0.85rem 1rem;
+	border: 1.5px solid var(--ui-border);
+	border-radius: 0;
+	background: var(--build-panel-bg);
+	backdrop-filter: blur(6px);
+	cursor: pointer;
+	font-family: 'JetBrains Mono', monospace;
+	text-align: left;
+	transition:
+		border-color 280ms ease,
+		background 280ms ease,
+		box-shadow 280ms ease;
+}
+
+.build-shell .step-card:hover {
+	border-color: color-mix(in srgb, var(--accent-yellow) 55%, var(--ui-border));
+}
+
+.build-shell .step-card:focus-visible {
+	outline: 2px solid var(--accent-yellow);
+	outline-offset: 3px;
+	z-index: 2;
+}
+
+.build-shell .step-card.active {
+	border: 2px solid var(--accent-yellow);
+	background: var(--build-accent-fill);
+	box-shadow:
+		var(--build-card-outline),
+		var(--build-card-shadow),
+		var(--build-card-inset);
+}
+
+.build-shell .card-num {
+	font-family: 'Space Grotesk', sans-serif;
+	font-size: 1.45rem;
+	font-weight: 700;
+	line-height: 1;
+	color: var(--text-secondary);
+	align-self: start;
+	padding-top: 0.1rem;
+	transition: color 280ms ease;
+}
+
+.build-shell .step-card.active .card-num {
+	color: var(--accent-yellow);
+}
+
+.build-shell .card-body {
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+}
+
+.build-shell .card-title {
+	font-family: 'Space Grotesk', sans-serif;
+	font-size: 0.78rem;
+	font-weight: 600;
+	line-height: 1.35;
+	color: var(--text-primary);
+	transition: color 280ms ease;
+}
+
+.build-shell .step-card.active .card-title {
+	color: var(--text-primary);
+}
+
+.build-shell .card-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: color-mix(in srgb, var(--text-primary) 40%, transparent);
+	flex-shrink: 0;
+	transition: color 280ms ease;
+}
+
+.build-shell .step-card.active .card-icon {
+	color: var(--accent-yellow);
+}
+
+.build-shell .flow-connector {
+	display: flex;
+	justify-content: center;
+	height: 20px;
+	position: relative;
+}
+
+.build-shell .connector-line {
+	width: 1px;
+	height: 100%;
+	background: color-mix(in srgb, var(--accent-yellow) 28%, var(--ui-border));
+	transition: background 400ms ease;
+}
+
+.build-shell .connector-line.lit {
+	background: color-mix(in srgb, var(--accent-yellow) 70%, transparent);
+	box-shadow: 0 0 4px color-mix(in srgb, var(--accent-yellow) 50%, transparent);
+}
+
+.build-shell .detail-col {
+	position: relative;
+}
+
+.build-shell .page-title {
+	margin: 0 0 1rem;
+	font-family: 'Space Grotesk', sans-serif;
+	font-size: clamp(1.35rem, 2.7vw, 2rem);
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	color: var(--text-primary);
+	text-align: left;
+}
+
+.build-shell .detail-card {
+	position: relative;
+	padding: 1.9rem 1.75rem;
+	border: 1.5px solid var(--ui-border);
+	background: var(--build-panel-bg);
+	backdrop-filter: blur(12px);
+}
+
+.build-shell .detail-card::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 2px;
+	background: linear-gradient(
+		90deg,
+		transparent,
+		color-mix(in srgb, var(--accent-yellow) 65%, transparent) 30%,
+		color-mix(in srgb, var(--accent-yellow) 65%, transparent) 70%,
+		transparent
+	);
+}
+
+.build-shell .detail-content {
+	transition: opacity 160ms ease;
+}
+
+.build-shell .detail-content.fading {
+	opacity: 0;
+}
+
+.build-shell .dh {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 0.8rem;
+	margin-bottom: 0.85rem;
+}
+
+.build-shell .dh-num {
+	font-family: 'Space Grotesk', sans-serif;
+	font-size: 2.1rem;
+	font-weight: 700;
+	line-height: 1;
+	color: var(--accent-yellow);
+}
+
+.build-shell .dh-badge {
+	font-size: 0.62rem;
+	font-weight: 700;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	padding: 0.25rem 0.55rem;
+	border: 1px solid var(--build-accent-border);
+	color: var(--accent-yellow);
+}
+
+.build-shell .dh-icon {
+	display: flex;
+	margin-left: auto;
+	color: color-mix(in srgb, var(--text-primary) 55%, transparent);
+}
+
+.build-shell .dt {
+	margin: 0 0 0.72rem;
+	font-family: 'Space Grotesk', sans-serif;
+	font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+	font-weight: 700;
+	letter-spacing: -0.01em;
+	color: var(--text-primary);
+	line-height: 1.25;
+}
+
+.build-shell .db {
+	margin: 0 0 1.4rem;
+	font-size: clamp(0.78rem, 1.5vw, 0.86rem);
+	line-height: 1.74;
+	color: var(--text-secondary);
+}
+
+.build-shell .dots {
+	margin-top: 0.2rem;
+}
+
+.build-shell .dots-track {
+	position: relative;
+	display: flex;
+	gap: 0.4rem;
+	align-items: center;
+}
+
+.build-shell .dot {
+	position: relative;
+	z-index: 2;
+	height: 3px;
+	width: 18px;
+	background: var(--ui-muted);
+	border: none;
+	cursor: pointer;
+	padding: 0;
+	flex-shrink: 0;
+}
+
+.build-shell .dot:focus-visible {
+	outline: 2px solid var(--accent-yellow);
+	outline-offset: 4px;
+}
+
+.build-shell .dot-pill {
+	position: absolute;
+	left: 0;
+	top: 50%;
+	height: 3px;
+	width: 18px;
+	background: var(--accent-yellow);
+	transform: translateY(-50%) translateX(calc(var(--idx) * (18px + 0.4rem)));
+	transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1);
+	pointer-events: none;
+	z-index: 3;
+}
+
+@media (max-width: 768px) {
+	.build-shell .build-wrap {
+		width: 92vw;
+	}
+
+	.build-shell .build-layout {
+		width: 100%;
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			'detail'
+			'flow';
+		justify-items: center;
+		gap: 2rem;
+	}
+
+	.build-shell .flow-board {
+		width: 100%;
+	}
+
+	.build-shell .detail-col {
+		width: 100%;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.build-shell .step-card,
+	.build-shell .detail-content,
+	.build-shell .dot-pill,
+	.build-shell .connector-line {
+		transition: none;
+	}
+}

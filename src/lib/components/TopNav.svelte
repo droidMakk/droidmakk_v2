@@ -12,7 +12,7 @@
 	/** @type {Array<{ label: string; href: import('$app/types').RouteId; icon: any }>} */
 	const navItems = [
 		{ label: 'Home', href: '/', icon: Home },
-		{ label: 'I Build', href: '/build', icon: Code2 },
+		{ label: 'Ship It', href: '/ship', icon: Code2 },
 		{ label: 'Works', href: '/works', icon: BriefcaseBusiness },
 		{ label: 'Career', href: '/career', icon: GraduationCap },
 		{ label: 'Say hello', href: '/contact', icon: MessageCircle }
