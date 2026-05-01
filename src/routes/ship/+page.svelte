@@ -57,6 +57,10 @@
 <section class="build-shell">
 	<div class="build-wrap">
 		<h1 class="page-title">How it's Shipped.</h1>
+		<p class="page-intro">
+			From first discovery to post-launch support, this six-stage flow keeps delivery transparent,
+			iterative, and focused on moving your product to production with confidence.
+		</p>
 
 		<div class="build-layout">
 

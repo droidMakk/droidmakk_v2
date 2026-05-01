@@ -92,6 +92,9 @@
 				href={asset('/assets/resume.pdf')}
 				class="resume-btn"
 				onmousemove={setPointerGlow}
+				download="Afroze-Khan-Resume.pdf"
+				type="application/pdf"
+				aria-label="Download Afroze Khan resume as a PDF"
 			>
 				<Download size={16} strokeWidth={2} aria-hidden="true" />
 				<span>Resume</span>

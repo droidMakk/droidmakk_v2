@@ -1,7 +1,15 @@
 {
 	"name": "Droidmakk",
-	"homepage_url": "droidmakk.me",
-	"author": "droidmakk<droidmakk@gmail.com>",
+	"short_name": "Droidmakk",
+	"description": "Portfolio of Afroze Khan, principal front-end developer and full-stack mobile engineering lead.",
+	"homepage_url": "https://droidmakkv2.web.app",
+	"start_url": "/",
+	"scope": "/",
+	"display": "standalone",
+	"orientation": "portrait-primary",
+	"theme_color": "#fdbd53",
+	"background_color": "#f2f2f2",
+	"author": "Afroze Khan <droidmakk@gmail.com>",
 	"icons": [
 		{
 			"src": "\/assets\/img\/icons\/android-icon-36x36.png",

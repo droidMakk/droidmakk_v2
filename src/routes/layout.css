@@ -14,6 +14,8 @@
 }
 
 :root {
+	--bg-parallax-y: 0px;
+	--bg-parallax-y-slow: 0px;
 	--accent-yellow: var(--color-brand-yellow);
 	--ui-bg: #f2f2f2;
 	--ui-surface: #ffffff;
@@ -21,6 +23,12 @@
 	--ui-border: rgba(60, 61, 65, 0.22);
 	--text-primary: #1f2124;
 	--text-secondary: rgba(31, 33, 36, 0.8);
+	--page-title-font: 'Space Grotesk', sans-serif;
+	--page-title-size: clamp(2rem, 5vw, 3.4rem);
+	--page-title-line-height: 1;
+	--page-title-letter-spacing: 0.01em;
+	--page-title-weight: 700;
+	--page-edge-padding: clamp(1rem, 4vw, 1.5rem);
 
 	font-family: 'JetBrains Mono', monospace;
 	color: var(--text-primary);
@@ -54,10 +62,12 @@ body {
 body::before {
 	content: '';
 	position: fixed;
-	inset: 0;
+	inset: -24vh 0;
 	pointer-events: none;
 	z-index: 0;
 	opacity: 0.82;
+	transform: translate3d(0, var(--bg-parallax-y), 0);
+	will-change: transform;
 	background:
 		repeating-linear-gradient(
 			to right,
@@ -86,6 +96,35 @@ body::before {
 	mask-image: radial-gradient(circle at center, black 36%, transparent 95%);
 }
 
+body::after {
+	content: '';
+	position: fixed;
+	inset: -20vh 0;
+	pointer-events: none;
+	z-index: 0;
+	opacity: 0.42;
+	transform: translate3d(0, var(--bg-parallax-y-slow), 0);
+	will-change: transform;
+	background:
+		radial-gradient(
+			circle at 18% 18%,
+			color-mix(in srgb, var(--accent-yellow) 16%, transparent),
+			transparent 40%
+		),
+		radial-gradient(
+			circle at 82% 78%,
+			color-mix(in srgb, var(--accent-yellow) 12%, transparent),
+			transparent 44%
+		);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	body::before,
+	body::after {
+		transform: none;
+	}
+}
+
 * {
 	box-sizing: border-box;
 }
@@ -93,4 +132,30 @@ body::before {
 a,
 button {
 	font-family: inherit;
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────── */
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--ui-bg);
+}
+
+::-webkit-scrollbar-thumb {
+	background: color-mix(in srgb, var(--accent-yellow) 45%, var(--ui-border));
+	border-radius: 999px;
+	border: 2px solid var(--ui-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: color-mix(in srgb, var(--accent-yellow) 70%, var(--ui-border));
+}
+
+/* Firefox */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: color-mix(in srgb, var(--accent-yellow) 45%, var(--ui-border)) var(--ui-bg);
 }

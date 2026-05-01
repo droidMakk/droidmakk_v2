@@ -14,12 +14,12 @@
 	--career-card-inset: inset 0 0 12px color-mix(in srgb, var(--accent-yellow) 6%, transparent);
 	min-height: calc(100vh - 170px);
 	display: grid;
-	place-items: center;
-	padding: 2.5rem 1rem;
+	place-items: start center;
+	padding: 0 var(--page-edge-padding) 2.5rem;
 }
 
 .career-shell .career-wrap {
-	width: min(1120px, 72vw);
+	width: min(1120px, 100%);
 }
 
 .career-shell .eyebrow {
@@ -32,11 +32,13 @@
 
 .career-shell .page-title {
 	margin: 0;
-	font-family: 'Space Grotesk', sans-serif;
-	font-size: clamp(1.7rem, 4vw, 3rem);
-	font-weight: 700;
-	letter-spacing: -0.03em;
+	font-family: var(--page-title-font);
+	font-size: var(--page-title-size);
+	font-weight: var(--page-title-weight);
+	line-height: var(--page-title-line-height);
+	letter-spacing: var(--page-title-letter-spacing);
 	color: var(--text-primary);
+	text-align: left;
 }
 
 .career-shell .page-intro {
@@ -385,7 +387,7 @@
 
 @media (max-width: 1024px) {
 	.career-shell .career-wrap {
-		width: min(1120px, 86vw);
+		width: min(1120px, 100%);
 	}
 
 	.career-shell .career-layout {
@@ -400,7 +402,7 @@
 
 @media (max-width: 768px) {
 	.career-shell {
-		padding: 1.8rem 1rem 2.5rem;
+		padding: 0 var(--page-edge-padding) 2.5rem;
 	}
 
 	.career-shell .career-wrap {

@@ -8,12 +8,12 @@
 	--build-card-inset: inset 0 0 12px color-mix(in srgb, var(--accent-yellow) 6%, transparent);
 	min-height: calc(100vh - 170px);
 	display: grid;
-	place-items: center;
-	padding: 2.5rem 1rem;
+	place-items: start center;
+	padding: 0 var(--page-edge-padding) 2.5rem;
 }
 
 .build-shell .build-wrap {
-	width: min(1080px, 70vw);
+	width: min(1080px, 100%);
 }
 
 .build-shell .build-layout {
@@ -154,12 +154,21 @@
 
 .build-shell .page-title {
 	margin: 0 0 1rem;
-	font-family: 'Space Grotesk', sans-serif;
-	font-size: clamp(1.35rem, 2.7vw, 2rem);
-	font-weight: 700;
-	letter-spacing: -0.02em;
+	font-family: var(--page-title-font);
+	font-size: var(--page-title-size);
+	font-weight: var(--page-title-weight);
+	line-height: var(--page-title-line-height);
+	letter-spacing: var(--page-title-letter-spacing);
 	color: var(--text-primary);
 	text-align: left;
+}
+
+.build-shell .page-intro {
+	margin: 0 0 1.6rem;
+	max-width: 62ch;
+	font-size: 0.9rem;
+	line-height: 1.72;
+	color: var(--text-secondary);
 }
 
 .build-shell .detail-card {
@@ -286,7 +295,7 @@
 
 @media (max-width: 768px) {
 	.build-shell .build-wrap {
-		width: 92vw;
+		width: 100%;
 	}
 
 	.build-shell .build-layout {

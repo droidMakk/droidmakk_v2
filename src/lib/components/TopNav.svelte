@@ -1,6 +1,7 @@
 <script>
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
+	import droidmakkLogo from '$lib/assets/droidmakk-logo.svg';
 	import {
 		Home,
 		Code2,
@@ -22,6 +23,15 @@
 </script>
 
 <nav class={`top-nav ${className}`} aria-label="Primary navigation">
+	<a
+		href={resolve('/')}
+		class:active={page.url.pathname === '/'}
+		class="nav-brand"
+		aria-label="Droidmakk home"
+	>
+		<img src={droidmakkLogo} alt="Droidmakk logo" class="nav-brand-mark" />
+	</a>
+
 	{#each navItems as item (item.href)}
 		{@const Icon = item.icon}
 		{@const isActive = page.url.pathname === item.href}
@@ -52,6 +62,39 @@
 			color-mix(in srgb, var(--accent-yellow) 10%, transparent);
 		backdrop-filter: blur(16px);
 		overflow: hidden;
+	}
+
+	.nav-brand {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 4.5rem;
+		height: 2.45rem;
+		padding: 0;
+		border-radius: 999px;
+		text-decoration: none;
+		background: color-mix(in srgb, var(--ui-muted) 58%, transparent);
+		transition:
+			background 180ms ease,
+			transform 180ms ease;
+	}
+
+	.nav-brand:hover {
+		background: color-mix(in srgb, var(--accent-yellow) 18%, var(--ui-surface));
+	}
+
+	.nav-brand.active {
+		background: color-mix(in srgb, var(--accent-yellow) 28%, var(--ui-surface));
+	}
+
+	.nav-brand-mark {
+		/* width: 4.85rem; */
+		/* height: 1.75rem; */
+		display: inline-block;
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+		background-size: 100% 100%;
+		flex-shrink: 0;
 	}
 
 	.nav-link {
@@ -122,6 +165,10 @@
 		.top-nav {
 			padding: 0.46rem;
 			gap: 0.28rem;
+		}
+
+		.nav-brand {
+			display: none;
 		}
 
 		.nav-link {
